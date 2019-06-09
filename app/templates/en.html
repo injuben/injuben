@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block in_juben_text_placeholder %}Title: Sample
+Author: Someone
+
+EXT. SOMEWHERE - DAY
+
+GUY and GURL walk down the street.
+
+It's a sunny day.
+Sunnier than normal.
+Too sunny to be funny.
+
+GUY
+So what's up?
+
+GURL
+Nothing much.
+Just thinking.{% endblock %}
+
+{% block lang_menu %}
+<a class="navbar-item" href="/">中文</a>
+{% endblock %}
+
+{% block in_faq_modal_title %}FAQ{% endblock %}
+{% block in_faq_body %}
+
+<h5>Where is the screenplay stored?</h5>
+<p>
+The content of the screenplay is stored in the browser's <i>localStorage</i> to ensure you can continue writing from your last session whenever you start the same browser. The final generated PDF file will NOT be left on the server side. Learn more about <a href="https://www.w3schools.com/html/html5_webstorage.asp" target = "local_storag" ><i>localStorage</i></a>.
+</p>
+
+<h5>What operating systems and browsers are supported?</h5>
+<p>
+The most popular  operating systems and browsers for PCs and smartphones are supported. However, the mobile version only provides limited functionality due to system limitations. Chrome on desktop is recommended for the best experience.
+</p>
+
+<h5>What is the difference between the Chinese version and the English version?</h5>
+<p>
+The two versions have customized fonts settings and typesetting rules. For example, Source Han Serif and Source Han Sans are used in Chinese version but Courier is the only font applied to English version.
+</p>
+
+<h5>Shortcuts?</h5>
+<p>
+Command+S (macOS) or Ctrl+S (Windows) will refresh preview on the right PDF preview panel.
+<p>
+{% endblock %}
+
+{% block in_about_modal_title %}About in剧本(jù běn){% endblock %}
+{% block in_about_body %}
+in剧本(jù běn) is an open source software which can help you to write a screenplay in browser as a plain text by using <a href="https://fountain.io/" target="fountain_io">Fountain</a> format. 
+<h2>Contact</h2>
+<p>
+<span class="fi-social-github in-icon"></span><a href="https://github.com/injuben" target="github">injuben</a><br/>
+<span class="fi-mail in-icon"></span>injuben@gmail.com</a>
+</p>
+{% endblock %}

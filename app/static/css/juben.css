@@ -1,0 +1,31 @@
+.CodeMirror-empty.CodeMirror-focused { outline: none; }
+.CodeMirror pre.CodeMirror-placeholder { color: #AAA; }
+.CodeMirror-activeline-background{background-color:#F0F1F0}
+.collaps-bar {padding-top:25%;width:10px;border: 0px solid black;overflow：hidden;word-break: break-all;word-wrap: break-word;cursor:pointer;background-color: #363636;color:white;flex-basis:auto;flex-grow:0;font-size:11px;}
+.collaps-bar:hover{background-color: #686868;}
+a.in-brand {font-family:"SF Pro SC","SF Pro Display","SF Pro Icons","PingFang SC","Helvetica Neue",Helvetica,Arial,"Microsoft YaHei",sans-serif;font-size:1.2em}
+.in-icon {font-size:1.5em;margin-right:6px;padding-left:1px;}
+.in-small-icon {font-size:1.2em;}
+.in-hidden {display:none;}
+.progress.is-refresh {background-color:#3D9977}
+.progress.is-refresh:indeterminate { background-image: linear-gradient(to right,#3D9977 30%,#dbdbdb 30%);}
+.button.is-refresh {background-color:#2D8967}
+.button.is-refresh:hover {background-color:#3D9977;}
+.button.is-refresh[disabled]{background-color:#3D9977;}
+.in-preview-settings-menu {border-left:1px solid #e5e5e5;padding:0.43em 0.5em;margin-right:-0.5em;}
+.in-preview-settings-menu-loading {border-left:1px solid #3D9977;padding:0.43em 0.5em;margin-right:-0.5em;}
+.is-loading.in-preview-settings-menu {border-left:1px solid #e5e5e5;padding:0.43em 0.5em;margin-right:-0.5em;}
+.in-div-page-container {text-align:center;vertical-align:middle;margin:0 auto 25px;padding:0;display:block;width:100%;min-height:100%;border:1px solid #AFAFAF;background-color:white;box-shadow: 0 0 8px 2px #9F9F9F;}
+.in-small-font {font-size:0.8em}
+.in-medium-font {font-size:1em}
+.in-large-font {font-size:1.5em}
+#in-refresh-preview {margin-left:1em}
+.spinner{height:100px;width: 100px;animation: rotate 0.6s infinite linear;border-radius:50%;border:5px solid #FFFFFF;border-right-color:transparent;} 
+@keyframes rotate{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+.CodeMirror-simplescroll-horizontal div, .CodeMirror-simplescroll-vertical div {background-color:#ABABAB;border-color:#AAAAAA}
+.is-disabled{pointer-events:none;opacity:.65;}
+#in-juben-text{margin-left:1em;font-size:1em;width:90%;line-height:1.5}
+#in-ec-pdf{border-width:0;background-color:#f5f5f5;cursor:pointer;}
+#in-preview-container{width:100%;background-color:#cccccc;padding:0px;overflow-y:scroll;overflow-x:hidden;}
+#in-progress-bar-parent{width:100%;position: absolute;margin:0;background-color:#cccccc;}
+#pdf-container{text-align: center;vertical-align: middle;width:100%;min-height:100%;border:0px solid black;background-color:#cccccc;padding:10px 20px 0;}
