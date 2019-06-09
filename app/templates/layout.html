@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+<head>
+  <title>in剧本</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="{{url_for('static', filename='img/favicon.ico') }}" type="image/x-icon" />
+  <link rel="stylesheet" href="{{url_for('static', filename='css/in.min.css') }}">
+  <script src="{{url_for('static', filename='js/download.min.js') }}"></script>
+  <script src="{{url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+  <script src="{{url_for('static', filename='js/pdf.min.js') }}"></script>
+  <script src="{{url_for('static', filename='js/js.cookie.min.js') }}"></script>
+  <script src="{{url_for('static', filename='js/codemirror/lib/codemirror.min.js') }}"></script>
+  <script src="{{url_for('static', filename='js/codemirror/composer/composer/codemirror.composer.min.js') }}"></script>
+  <script src="{{url_for('static', filename='js/juben.js') }}"></script>
+  <link rel="stylesheet" href="{{url_for('static', filename='css/juben.' + LANG +'.css') }}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/juben.css') }}">
+</head>
+
+<body>
+<form id="in-form" method="POST" action="/preview">
+
+<div id="in-panel" class="columns is-fullhd is-gapless">
+
+  <div id="in-edit-panel" class="column">
+
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+      <div class="navbar-menu is-active">
+        <div class="navbar-start">
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link in-brand" id="in-brand">in剧本</a>
+            <div id="in-navbar-dropdown-menu" class="navbar-dropdown is-hidden-touch">
+              <a class="navbar-item is-hidden-touch">
+                <label class="radio">
+                  <input type="radio" name="in-font-size" value="small" {% if LANG=='en' %}checked{% endif %}>
+                  <span class="in-small-font">{{_('Small')}}</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="in-font-size" value="medium" {% if LANG=='zh' %}checked{% endif %}>
+                  <span class="in-medium-font">{{_('Medium')}}</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="in-font-size" value="large">
+                  <span class="in-large-font">{{_('Large')}}</span>
+                </label>
+              </a>
+
+              <a class="navbar-item is-hidden-touch">
+                <label class="checkbox">
+                  <input type="checkbox" id="in-dark-mode"> {{_('Dark Mode')}}
+                </label>
+              </a>
+              <a class="navbar-item is-hidden-touch">
+                <label class="checkbox">
+                  <input type="checkbox" id="in-active-line"> {{_('Active Line')}}
+                </label>
+              </a>
+
+              <hr class="navbar-divider">
+              {% if LANG=='zh' %}
+              <a class="navbar-item menu-modal" href="/quick_start" target="quick_start">{{_('Quick Start')}}</a>
+              <a class="navbar-item menu-modal" href="#help" data-target="in-help">{{_('Help')}}</a>
+              {% endif %}
+              <a class="navbar-item menu-modal" data-target="in-faq">{{_('FAQ')}}</a>
+              <a class="navbar-item menu-modal" data-target="in-about">{{_('About inJuBen')}}</a>
+              {% block lang_menu %}{% endblock %}
+              <hr class="navbar-divider">
+              <a class="navbar-item is-hidden-touch" id="in-save-txt">
+                <span class="fi-save in-icon in-small-icon"></span>
+                {{_('Save AS TXT')}}
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-end is-hidden-touch">
+          <div class="navbar-item">
+              <span class="fi-pencil in-icon" title="{{_('Word Count')}}"></span><span id="in-word-count">0</span>
+          </div>
+        </div>
+      </div> 
+    </nav>
+
+    <input type="hidden" name="in-lang" id="in-lang" value="{{LANG}}" />
+    <input type="hidden" name="in-line-position" id="in-line-position" value="" />
+    <textarea class="in-hidden" id="in-juben-text" name="in-juben-text" placeholder="{% block in_juben_text_placeholder %}{% endblock %}"></textarea>
+  </div>
+
+  <div id="in-collaps-bar" class="column is-hidden-touch collaps-bar">
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+    </nav>
+    <div class="in-hidden" id="in-collaps-arrow">&#x25B6;</div>
+  </div>
+
+  <div id="in-preview-panel" class="column is-6">
+    <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+      <div class="navbar-menu is-active">
+        <div class="navbar-start">
+           <div id="in-preview-navbar" class="navbar-item has-dropdown">
+             <div class="buttons">
+                <a class="button is-success is-refresh" id="in-refresh-preview">
+                  <span class="fi-refresh in-icon"></span>
+                  <strong>{{_('Refresh Preview')}}</strong>
+                  <span class="is-hidden-touch" style="margin-left:0.5em"></span>
+                  <strong><span id="in-preview-settings-menu" class="in-preview-settings-menu is-hidden-touch" title="{{_('Preview Settings')}}">&#x25BE;</span></strong>
+                </a>
+                <div id="in-preview-settings" class="navbar-dropdown is-hidden-touch">
+                  <a class="navbar-item">
+                    <label class="checkbox">
+                      <input id="in-strong-scene-heading" name="in-strong-scene-heading" type="checkbox" value="true"> {{_('Strong Scene Heading')}}
+                    </label>
+                  </a>
+                  {% if LANG=='zh' %}
+                  <a class="navbar-item">
+                    <label class="checkbox">
+                      <input id="in-has-scene-num" name="in-has-scene-num" type="checkbox" value="true">  {{_('Scene Number')}}
+                    </label>
+                  </a>
+                  <a class="navbar-item">
+                    <label class="checkbox">
+                      <input id="in-first-page-num" name="in-first-page-num" type="checkbox" value="true">  {{_('First Page Number')}}
+                    </label>
+                  </a>
+                  {% endif %}
+                </div>
+             </div>
+           </div>
+           <div class="navbar-item is-hidden-touch">
+             <div class="buttons">
+                <a class="button" id="in-save-pdf" disabled>
+                  <span class="fi-download in-icon"></span>
+                  {{_('Download PDF')}}
+                </a>
+             </div>
+           </div>
+        </div>
+        <div class="navbar-end is-hidden-touch">
+            <a class="navbar-item fi-arrows-expand in-small-icon" id="in-ec-pdf"></a>
+        </div>
+      </div>
+    </nav>
+    <div id="in-preview-container" class="column">
+        <div id="in-progress-bar-parent" class="in-hidden">
+            <div id="in-progress-bar" class="spinner"></div>
+        </div>
+        <div id="pdf-container">
+    </div>
+  </div>
+
+</div>
+
+</form>
+
+<div id="in-help" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">{% block in_help_modal_title %}{% endblock %}</p>
+      <button class="delete" aria-label="close" data-target="in-help"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="content">
+      {% block in_help_body %}{% endblock %}
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+    </footer>
+  </div>
+</div>
+
+<div id="in-faq" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">{% block in_faq_modal_title %}{% endblock %}</p>
+      <button class="delete" aria-label="close" data-target="in-faq"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="content">
+      {% block in_faq_body %}{% endblock %}
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+    </footer>
+  </div>
+</div>
+
+<div id="in-about" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">{% block in_about_modal_title %}{% endblock %}</p>
+      <button class="delete" aria-label="close" data-target="in-about"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="content">
+      {% block in_about_body %}{% endblock %}
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+    </footer>
+  </div>
+</div>
+
+
+</body>
+</html>
+

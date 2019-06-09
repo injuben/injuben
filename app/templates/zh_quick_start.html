@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+<head>
+  <title>in剧本|新手指南</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="{{url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+  <link rel="icon" href="{{url_for('static', filename='img/favicon.ico') }}" type="image/x-icon" />
+  <link rel="stylesheet" href="{{url_for('static', filename='css/in.min.css') }}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/juben.' + LANG +'.css') }}">
+<script>
+$(function() {
+
+    active_menu();
+
+    $('.menu-list a').on('click',function(){
+        var active_menu = this;
+        $(this).addClass('is-active');
+        $('.menu-list a').each(function(index, el) {
+            if(($(active_menu).attr('href')) !== $(el).attr('href')) {
+                $(this).removeClass('is-active');
+            }
+        });
+    });
+    function active_menu() {
+        if(location.href.indexOf('#') !== -1) {
+            $('.menu-list a').each(function() {
+                if(location.href.indexOf($(this).attr('href')) !== -1) {
+                    $(this).addClass('is-active');
+                }else {
+                    $(this).removeClass('is-active');
+                }
+            });
+        }
+    }
+});
+</script>
+<style>
+.menu-list a.is-active {background-color:#3D9977}
+.sidemenu {position:fixed;height:90%;top:0;padding-top:30px;left:0;overflow-x: hidden;}
+</style>
+</head>
+<body>
+<nav class="navbar is-light">
+  <div class="navbar-brand">
+    <div class="navbar-start">
+      <a class="navbar-item is-hidden-desktop" href="/#help">
+        <span style="padding-top:6px">« 更多帮助</span>
+      </a>
+      <a class="navbar-item" href="/quick_start"  style="border:0px solid black;padding-bottom:0">
+        <strong style="font-size:1.6em;margin-right:2px;">in剧本</strong>
+        <span style="padding-top:6px">新手指南</span>
+       </a>
+      </div>
+    </div>
+</nav>
+<div class="columns">
+  <div class="column is-one-fifth is-hidden-touch">
+    <aside class="menu sidemenu" style="margin-left:1em">
+      <p class="menu-label">
+        <a class="navbar-item" href="/">
+        </a>
+      </p>
+      <p class="menu-label" style="text-transform:lowercase;">
+        快速指南
+      </p>
+      <ul class="menu-list">
+            <li><a href="#title_page">剧本封面</a></li>
+            <li><a href="#slug_action">场景标题与动作描述</a></li>
+            <li><a href="#character_dialogue">角色及台词</a></li>
+            <li><a href="#save_download">保存下载</a></li>
+      </ul>
+      <p class="menu-label">
+        进阶功能
+      </p>
+      <ul class="menu-list">
+        <li><a href="#preview_shortcut">预览快捷键</a></li>
+        <li><a href="#bold">加粗文字</a></li>
+        <li><a href="#section">剧本大纲</a></li>
+      </ul>
+      <p class="menu-label">
+        示例内容
+      </p>
+      <ul class="menu-list">
+        <li><a href="#sample">示例内容</a></li>
+      </ul>
+      <p class="menu-label">
+        <a class="navbar-item" href="/#help">« 更多帮助</a>
+      </p>
+    </aside>
+  </div> 
+
+  <div class="column">
+    <div class="content"></div>
+    <div class="content">
+        <a name="title_page"></a>
+        <h2>剧本封面</h2>
+        <p>在编辑框第一行输入剧本的标题，第二行输入剧本的作者，点击<strong>刷新预览</strong>按钮即可生成封面。如下图所示：</p>
+        <figure class="image">
+          <img src="{{url_for('static', filename='img/help/zh_title_page.png') }}">
+        </figure>
+
+        <a name="slug_action"></a>
+        <h2>场景标题与动作描述</h2>
+        <p>空一行后开始输入场景标题，以场景关键字：内、内景、外、外景、内外、外内、内／外、外／内 + 空格 开始的均为场景标题。场景标题后的普通文字即为动作描述。点击<strong>刷新预览</strong>按钮，向下滚动预览框可查看新生成的页。如下图所示：</p>
+        <figure class="image">
+          <img src="{{url_for('static', filename='img/help/zh_slug_action.png') }}">
+        </figure>
+        
+        <a name="character_dialogue"></a>
+        <h2>角色及台词</h2>
+        <p>输入格式为 角色 + 冒号 + 台词。不同角色之间的连续对话分多行输入即可。如果角色及台词有辅助描述，如：画外音、情绪说明等，放入括号中即可。如下图所示：</p>
+        <figure class="image">
+          <img src="{{url_for('static', filename='img/help/zh_character_dialogue.png') }}">
+        </figure>
+        
+        <a name="save_download"></a>
+        <h2>保存下载</h2>
+        <p>点击菜单栏中的<strong>另存为TXT</strong>即可保存源文件至本地。点击预览框中的<strong>下载PDF</strong>即可下载生成的PDF文件。如下图所示：</p>
+        <figure class="image">
+          <img src="{{url_for('static', filename='img/help/zh_save_download.png') }}">
+        </figure>        
+
+        <a name="preview_shortcut"></a>
+        <h2>预览快捷键</h2>
+        <p>在编辑过程中按 Command+S(macOS) 或 Ctrl+S (Windows) 即可刷新预览文件内容。</p>
+
+        <a name="bold"></a>
+        <h2>加粗文字</h2>
+        <p>在需要加粗的文字两侧输入**即可实现加粗。如下图所示：</p>
+        <figure class="image">
+          <img src="{{url_for('static', filename='img/help/zh_bold.png') }}">
+        </figure>
+
+        <a name="section"></a>
+        <h2>剧本大纲</h2>
+        <p>输入 # + 空格 + 大纲标题，输入 = + 空格 + 大纲说明，前后需空行。# 数目代表大纲层级。大纲不会出现在最终生成的文件中。如下图所示：</p>
+        <figure class="image">
+          <img src="{{url_for('static', filename='img/help/zh_section1.png') }}">
+        </figure>
+        <p>点击左侧的三角按钮可以进行大纲折叠。如下图所示：</p>
+        <p>折叠一级大纲</p>
+        <figure class="image">
+          <img src="{{url_for('static', filename='img/help/zh_section2.png') }}">
+        </figure>
+        <p>折叠二级大纲</p>
+        <figure class="image">
+          <img src="{{url_for('static', filename='img/help/zh_section3.png') }}">
+        </figure>
+        
+        <a name="sample"></a>
+        <h2>示例内容</h2>
+<article class="message is-light">
+<div class="message-body"><pre>剧本标题
+剧本作者
+
+内景 茶馆 - 清晨
+动作描述动作描述。**这里是加粗文字**
+
+# 大纲1
+= 大纲1说明
+
+角色1：台词台词台词。
+角色2：台词台词台词台词台词台词。
+角色1：台词台词台词台。
+角色2：台词台词台词。
+角色3（旁白）：台词台词台词台词。
+角色2：（高兴的）台词台词台词（停顿了一下）台词台词台词台词。
+
+## 大纲1.1
+= 大纲1.1说明
+
+外 马路 - 傍晚
+动作描述。
+
+# 大纲2
+
+内／外 门口 - 夜
+动作描述动作描述动作描述。
+
+</pre></div>
+</article>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
