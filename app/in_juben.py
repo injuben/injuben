@@ -47,7 +47,7 @@ def quick_start():
 @app.route('/examples/<path:path>')
 @cached()
 def examples(path):
-    f = open("examples/" + path, "r")
+    f = open("examples/" + path, mode="r", encoding="utf-8")
     r = make_response(f.read())
     f.close()
     r.headers['Content-Type'] = 'text/plain; charset=UTF-8'
