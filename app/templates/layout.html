@@ -30,7 +30,7 @@
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link in-brand" id="in-brand">in剧本</a>
             <div id="in-navbar-dropdown-menu" class="navbar-dropdown is-hidden-touch">
-              <a class="navbar-item is-hidden-touch">
+              <a class="navbar-item">
                 <label class="radio">
                   <input type="radio" name="in-font-size" value="small" {% if LANG=='en' %}checked{% endif %}>
                   <span class="in-small-font">{{_('Small')}}</span>
@@ -45,12 +45,12 @@
                 </label>
               </a>
 
-              <a class="navbar-item is-hidden-touch">
+              <a class="navbar-item" id="in-dark-mode-menu">
                 <label class="checkbox">
                   <input type="checkbox" id="in-dark-mode"> {{_('Dark Mode')}}
                 </label>
               </a>
-              <a class="navbar-item is-hidden-touch">
+              <a class="navbar-item">
                 <label class="checkbox">
                   <input type="checkbox" id="in-active-line"> {{_('Active Line')}}
                 </label>
@@ -65,7 +65,7 @@
               <a class="navbar-item menu-modal" data-target="in-about">{{_('About inJuBen')}}</a>
               {% block lang_menu %}{% endblock %}
               <hr class="navbar-divider">
-              <a class="navbar-item is-hidden-touch" id="in-save-txt">
+              <a class="navbar-item" id="in-save-txt">
                 <span class="fi-save in-icon in-small-icon"></span>
                 {{_('Save AS TXT')}}
               </a>
@@ -85,7 +85,7 @@
     <textarea class="in-hidden" id="in-juben-text" name="in-juben-text" placeholder="{% block in_juben_text_placeholder %}{% endblock %}"></textarea>
   </div>
 
-  <div id="in-collaps-bar" class="column is-hidden-touch collaps-bar">
+  <div id="in-collaps-bar" class="column is-hidden-narrow-touch collaps-bar">
     <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
     </nav>
     <div class="in-hidden" id="in-collaps-arrow">&#x25B6;</div>
@@ -95,7 +95,7 @@
     <nav class="navbar is-light" role="navigation" aria-label="main navigation">
       <div class="navbar-menu is-active">
         <div class="navbar-start">
-           <div id="in-preview-navbar" class="navbar-item has-dropdown">
+           <div id="in-preview-navbar" class="navbar-item has-dropdown navbar-in-touch">
              <div class="buttons">
                 <a class="button is-success is-refresh" id="in-refresh-preview">
                   <span class="fi-refresh in-icon"></span>
@@ -124,7 +124,7 @@
                 </div>
              </div>
            </div>
-           <div class="navbar-item is-hidden-touch">
+           <div class="navbar-item navbar-in-touch" id="in-save">
              <div class="buttons">
                 <a class="button" id="in-save-pdf" disabled>
                   <span class="fi-download in-icon"></span>
@@ -204,4 +204,5 @@
 
 </body>
 </html>
+
 

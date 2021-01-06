@@ -35,6 +35,12 @@ $(function() {
         word_count(cm);
     });
 
+    in_editor.on('touchstart', function(cm) {
+        $('#in-navbar-dropdown-menu').hide();
+        if(!$('#in-navbar-dropdown-menu').hasClass('is-hidden-touch')) $('#in-navbar-dropdown-menu').addClass('is-hidden-touch');
+        if($('#in-brand').hasClass('in-brand-touch')) $('#in-brand').removeClass('in-brand-touch');
+    });
+
     $('#in-juben-text').bind('input propertychange', function() {
         in_editor.setValue($(this).val());
     });
@@ -67,8 +73,12 @@ $(function() {
     });
 
     $('#in-brand').on('click touchstart', function() {
-        $('#in-navbar-dropdown-menu').toggleClass("is-hidden-touch");
-        return false;
+        $('#in-navbar-dropdown-menu').show();
+        if($(window).width() < 1088) {
+            $('#in-navbar-dropdown-menu').toggleClass("is-hidden-touch");
+            $('#in-brand').toggleClass("in-brand-touch");
+            return false;
+        }
     });
 
     $('#in-dark-mode').on('click', function(){
@@ -113,10 +123,14 @@ $(function() {
         var content = in_editor.getValue().trim(); 
         file_name = content.split("\n")[0].trim().replace('Title:','').trim();
         if(file_name === '') file_name = 'injuben';
-        download(content, file_name + ".txt", "text/plain");
+        download(base64_to_blob(window.btoa(unescape(encodeURIComponent("\ufeff" + content))), 'text/plain;charset=utf-8'), file_name + ".txt", "text/plain;charset=utf-8");
     });
 
     $('#in-collaps-bar').on('click', function(){
+        in_collaps_bar_toggle();
+    });
+
+    function in_collaps_bar_toggle(){
         $('#in-preview-panel').toggleClass('column').toggle();
         if($('#in-preview-panel').hasClass('column')) {
             $('#in-collaps-arrow').html('&#x25B6;');
@@ -130,7 +144,8 @@ $(function() {
           render_pdf(pdf_container, injuben_result.content);
           default_layout = 1;
         }
-    });
+
+    }
 
     $('#in-ec-pdf').on('click', function(){
         $(this).addClass('is-disabled').toggleClass('fi-arrows-expand').toggleClass('fi-arrows-compress');
@@ -170,7 +185,8 @@ $(function() {
 
     $('#in-save-pdf').on('click', function(e) {
         if($(this).attr('disabled')) return false;
-        download('data:application/pdf;base64,' + injuben_result.content, injuben_result.filename + '.' + injuben_result.suffix, 'application/pdf');
+        download(base64_to_blob(injuben_result.content,  'application/pdf'),
+                injuben_result.filename + '.' + injuben_result.suffix, 'application/pdf');
     });
 
     load_layout();
@@ -182,6 +198,22 @@ $(function() {
     load_state();
     if(in_editor.getValue().trim() !== '')  submit_preview();
     
+    function base64_to_blob(data, content_type) {
+        byte_string = atob(data);
+        byte_list = [];
+        bucket_size = 512;
+        for( i = 0; i < byte_string.length; i += bucket_size ) {
+            bucket = byte_string.slice(i, i + bucket_size);
+            byte_array = new Array(bucket.length);
+            for ( j = 0; j < bucket.length; j ++) {
+                byte_array[j] = bucket.charCodeAt(j);
+            }
+            byte_list.push(new Uint8Array(byte_array));
+        }
+
+        return new Blob(byte_list, {type: content_type});
+    }
+
     function load_editor_option() {
         if(get_cookie('in.editor.option.theme') === 'dracula') {
             $('#in-dark-mode').prop('checked', true); 
@@ -393,14 +425,9 @@ $(function() {
         height_trunk = 50;
         $('#in-collaps-arrow').css({marginTop:$(window).height()/2-height_trunk+'px'});
         $('#in-preview-container').height($(window).height()-height_trunk-2);
-        if($(window).width() < 768) {
-            height_trunk += 100;
-        }
-        if (navigator.userAgent.match(/(iPhone|iPad|iPod)/) && IN_LANG === 'zh') {
-            $(in_editor.getWrapperElement()).hide();
-            $('#in-juben-text').height($(window).height()-height_trunk-12);
-            $('#in-juben-text').attr('placeholder','');
-            $('#in-juben-text').show();
+        if($(window).width() <= 768) {
+            height_trunk += 45;
+            if($('#in-preview-panel').is(":hidden")) in_collaps_bar_toggle();
         }
         $('.CodeMirror').each(function(index, el) { 
             $(el).height($(window).height()-height_trunk-2);
