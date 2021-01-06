@@ -95,11 +95,11 @@
     <nav class="navbar is-light" role="navigation" aria-label="main navigation">
       <div class="navbar-menu is-active">
         <div class="navbar-start">
-           <div id="in-preview-navbar" class="navbar-item has-dropdown navbar-in-touch">
+           <div id="in-preview-navbar" class="navbar-item navbar-in-touch">
              <div class="buttons">
                 <a class="button is-success is-refresh" id="in-refresh-preview">
                   <span class="fi-refresh in-icon"></span>
-                  <strong>{{_('Refresh Preview')}}</strong>
+                  <strong id="in-refresh-preview-txt">{{_('Refresh Preview')}}</strong>
                   <span class="is-hidden-touch" style="margin-left:0.5em"></span>
                   <strong><span id="in-preview-settings-menu" class="in-preview-settings-menu is-hidden-touch" title="{{_('Preview Settings')}}">&#x25BE;</span></strong>
                 </a>
@@ -128,7 +128,7 @@
              <div class="buttons">
                 <a class="button" id="in-save-pdf" disabled>
                   <span class="fi-download in-icon"></span>
-                  {{_('Download PDF')}}
+                  <span id="in-save-pdf-txt">{{_('Download PDF')}}</span>
                 </a>
              </div>
            </div>

@@ -429,6 +429,16 @@ $(function() {
             height_trunk += 45;
             if($('#in-preview-panel').is(":hidden")) in_collaps_bar_toggle();
         }
+        if($(window).width() <= 390 && IN_LANG == 'en'){
+            $('#in-refresh-preview-txt').text('Preview');
+            $('#in-save-pdf-txt').text('PDF');
+        }
+        else{
+           if(IN_LANG == 'en'){
+                $('#in-refresh-preview-txt').text('Refresh Preview');
+                $('#in-save-pdf-txt').text('Download PDF');
+            }
+        }
         $('.CodeMirror').each(function(index, el) { 
             $(el).height($(window).height()-height_trunk-2);
         });
