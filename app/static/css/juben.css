@@ -35,7 +35,13 @@ a.in-brand {font-family:"SF Pro SC","SF Pro Display","SF Pro Icons","PingFang SC
 #in-brand {background-color:#363636}
 .in-brand:hover{color:#f5f5f5}
 .navbar-divider{background-color:#515151}
-@media screen and (max-width:768px){.is-hidden-narrow-touch{display:none !important} #in-edit-panel nav.navbar{min-height:auto} #in-edit-panel .navbar-menu{padding:0} .navbar-item{padding-left:0}}
+.in-preview-blank{font-size:22em;color:#ddd}
+.in-rotate-180-before:before{transform: rotate(180deg)}
+#in-collaps-arrow i {font-size:1.3em;padding-left:0.1em}
+#in-preview-navbar .button.is-success{border-color:#2a6f56}
+@media screen and (max-width:300px){#in-preview-navbar{padding-left:1.5rem;padding-right:0;} #in-save{padding-left:0}}
+@media screen and (max-width:768px){.is-hidden-narrow-touch{display:none !important} #in-edit-panel nav.navbar{min-height:auto} #in-edit-panel .navbar-menu{padding:0} #in-preview-navbar{padding-left:1.5rem} #in-save{padding-left:0} .in-preview-blank{font-size:16em} #in-preview-panel .navbar.is-light{background-color:#363636} #in-preview-navbar .button.is-refresh[disabled]{color:#fefefe;background-color:#80c5ac} #in-save .button[disabled]{color:#9a9a9a}}
+@media screen and (min-width:769px) {#in-refresh-preview-txt{font-weight:bold}}
 @media screen and (min-width:769px) and (max-width:1087px){#in-edit-panel nav.navbar{min-height:auto} #in-edit-panel .navbar-menu{padding-bottom:0}}
-@media screen and (max-width:1087px){.navbar-in-touch{float:left} #in-preview-panel .navbar-menu{box-shadow:none;padding:0} #in-edit-panel .in-brand-touch.navbar-link::after{transform: rotate(135deg)} #in-edit-panel .navbar-link:not(.is-arrowless)::after{border-color:#f5f5f5} .navbar-menu{background-color:#363636}}
+@media screen and (max-width:1087px){.navbar-in-touch{float:left} #in-preview-panel .navbar-menu{box-shadow:none;padding:0} #in-edit-panel .in-brand-touch.navbar-link::after{transform: rotate(135deg)} #in-edit-panel .navbar-link:not(.is-arrowless)::after{border-color:#f5f5f5} .navbar-menu{background-color:#363636} #in-navbar-dropdown-menu {border-top:1px solid #515151}}
 @media screen and (min-width:1088px){#in-edit-panel .navbar-dropdown{background-color:#363636;border-top-color:#515151}}

@@ -7,7 +7,7 @@
   <link rel="icon" href="{{url_for('static', filename='img/favicon.ico') }}" type="image/x-icon" />
   <link rel="stylesheet" href="{{url_for('static', filename='css/in.min.css') }}">
   <script src="{{url_for('static', filename='js/download.min.js') }}"></script>
-  <script src="{{url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+  <script src="{{url_for('static', filename='js/jquery-3.5.1.min.js') }}"></script>
   <script src="{{url_for('static', filename='js/pdf.min.js') }}"></script>
   <script src="{{url_for('static', filename='js/js.cookie.min.js') }}"></script>
   <script src="{{url_for('static', filename='js/codemirror/lib/codemirror.min.js') }}"></script>
@@ -50,7 +50,7 @@
                   <input type="checkbox" id="in-dark-mode"> {{_('Dark Mode')}}
                 </label>
               </a>
-              <a class="navbar-item">
+              <a class="navbar-item is-hidden-touch">
                 <label class="checkbox">
                   <input type="checkbox" id="in-active-line"> {{_('Active Line')}}
                 </label>
@@ -59,7 +59,7 @@
               <hr class="navbar-divider">
               {% if LANG=='zh' %}
               <a class="navbar-item menu-modal" href="/quick_start" target="quick_start">{{_('Quick Start')}}</a>
-              <a class="navbar-item menu-modal" href="#help" data-target="in-help">{{_('Help')}}</a>
+              <a class="navbar-item menu-modal" data-target="in-help">{{_('Help')}}</a>
               {% endif %}
               <a class="navbar-item menu-modal" data-target="in-faq">{{_('FAQ')}}</a>
               <a class="navbar-item menu-modal" data-target="in-about">{{_('About inJuBen')}}</a>
@@ -88,7 +88,7 @@
   <div id="in-collaps-bar" class="column is-hidden-narrow-touch collaps-bar">
     <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
     </nav>
-    <div class="in-hidden" id="in-collaps-arrow">&#x25B6;</div>
+    <div class="in-hidden" id="in-collaps-arrow"><i id="in-collaps-arrow-icon" class="fi-play"></i></div>
   </div>
 
   <div id="in-preview-panel" class="column is-6">
@@ -99,7 +99,7 @@
              <div class="buttons">
                 <a class="button is-success is-refresh" id="in-refresh-preview">
                   <span class="fi-refresh in-icon"></span>
-                  <strong id="in-refresh-preview-txt">{{_('Refresh Preview')}}</strong>
+                  <span id="in-refresh-preview-txt">{{_('Refresh Preview')}}</span>
                   <span class="is-hidden-touch" style="margin-left:0.5em"></span>
                   <strong><span id="in-preview-settings-menu" class="in-preview-settings-menu is-hidden-touch" title="{{_('Preview Settings')}}">&#x25BE;</span></strong>
                 </a>
@@ -143,6 +143,8 @@
             <div id="in-progress-bar" class="spinner"></div>
         </div>
         <div id="pdf-container">
+          <span class="fi-page-multiple in-preview-blank"></span>
+        </div>
     </div>
   </div>
 

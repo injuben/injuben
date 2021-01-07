@@ -133,11 +133,11 @@ $(function() {
     function in_collaps_bar_toggle(){
         $('#in-preview-panel').toggleClass('column').toggle();
         if($('#in-preview-panel').hasClass('column')) {
-            $('#in-collaps-arrow').html('&#x25B6;');
+            $('#in-collaps-arrow-icon').removeClass('in-rotate-180-before');
             set_cookie('in.layout.option', 1);
         }
         else {
-            $('#in-collaps-arrow').html('&#x25C0;');
+            $('#in-collaps-arrow-icon').addClass('in-rotate-180-before');
             set_cookie('in.layout.option', 2);
         }
         if(default_layout === '2') {
@@ -299,6 +299,9 @@ $(function() {
         $('.modal').each(function() {$(this).removeClass('is-active');});
         if(location.href.indexOf('#') !== -1) {
             location.href = '#';
+            if ('function' == typeof window.history.replaceState) {
+                history.replaceState({}, '', window.location.href.slice(0, -1));
+            }
         }
     }
 
@@ -426,10 +429,10 @@ $(function() {
         $('#in-collaps-arrow').css({marginTop:$(window).height()/2-height_trunk+'px'});
         $('#in-preview-container').height($(window).height()-height_trunk-2);
         if($(window).width() <= 768) {
-            height_trunk += 45;
+            height_trunk += 43;
             if($('#in-preview-panel').is(":hidden")) in_collaps_bar_toggle();
         }
-        if($(window).width() <= 390 && IN_LANG == 'en'){
+        if($(window).width() <= 420 && IN_LANG == 'en'){
             $('#in-refresh-preview-txt').text('Preview');
             $('#in-save-pdf-txt').text('PDF');
         }
