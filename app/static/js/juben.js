@@ -144,7 +144,6 @@ $(function() {
           render_pdf(pdf_container, injuben_result.content);
           default_layout = 1;
         }
-
     }
 
     $('#in-ec-pdf').on('click', function(){
@@ -210,7 +209,6 @@ $(function() {
             }
             byte_list.push(new Uint8Array(byte_array));
         }
-
         return new Blob(byte_list, {type: content_type});
     }
 
