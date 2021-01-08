@@ -123,6 +123,7 @@ $(function() {
         var content = in_editor.getValue().trim(); 
         file_name = content.split("\n")[0].trim().replace('Title:','').trim();
         if(file_name === '') file_name = 'injuben';
+        if(window.navigator.userAgent.match(/Win/)) content = content.replace(/\n/g, "\r\n");
         download(base64_to_blob(window.btoa(unescape(encodeURIComponent("\ufeff" + content))), 'text/plain;charset=utf-8'), file_name + ".txt", "text/plain;charset=utf-8");
     });
 
