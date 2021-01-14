@@ -39,6 +39,7 @@ $(function() {
         $('#in-navbar-dropdown-menu').hide();
         if(!$('#in-navbar-dropdown-menu').hasClass('is-hidden-touch')) $('#in-navbar-dropdown-menu').addClass('is-hidden-touch');
         if($('#in-brand').hasClass('in-brand-touch')) $('#in-brand').removeClass('in-brand-touch');
+        hide_preview_navbar();
     });
 
     $('#in-juben-text').bind('input propertychange', function() {
@@ -68,9 +69,13 @@ $(function() {
     }, false);
 
     $('body').on('click', function() {
+        hide_preview_navbar();
+    });
+
+    function hide_preview_navbar() {
         if($('#in-preview-navbar').hasClass('is-active')) $('#in-preview-navbar').removeClass('is-active');
         if(!$('#in-preview-settings-menu').hasClass('in-preview-settings-menu')) $('#in-preview-settings-menu').addClass('in-preview-settings-menu');
-    });
+    }
 
     $('#in-brand').on('click touchstart', function() {
         $('#in-navbar-dropdown-menu').show();
@@ -430,6 +435,12 @@ $(function() {
         if($(window).width() <= 768) {
             height_trunk += 43;
             if($('#in-preview-panel').is(":hidden")) in_collaps_bar_toggle();
+            $('#in-preview-settings').removeClass('is-down').addClass('is-up');
+            $('#in-preview-settings-menu').html('&#x25B2;');
+        }
+        else {
+            $('#in-preview-settings').removeClass('is-up').addClass('is-down');
+            $('#in-preview-settings-menu').html('&#x25BE;');
         }
         if($(window).width() <= 420 && IN_LANG == 'en'){
             $('#in-refresh-preview-txt').text('Preview');
