@@ -164,9 +164,14 @@ $(function() {
         }
     });
 
-    $('#in-preview-settings-menu').on('click', function(event){
+    $('#in-preview-settings-menu').on('click touchstart', function(event){
         if($('#in-refresh-preview').attr('disabled')) return false; 
         $('#in-preview-navbar').toggleClass('is-active');
+        event.stopImmediatePropagation();
+        return false;
+    });
+
+    $('#in-preview-settings').children().on('click touchstart', function(event){
         event.stopImmediatePropagation();
     });
 
@@ -185,6 +190,7 @@ $(function() {
     $('#in-refresh-preview').on('click', function(){
         if($(this).attr('disabled')) return false; 
         submit_preview();
+        hide_preview_navbar();
         event.stopImmediatePropagation();
     });
 
@@ -192,6 +198,40 @@ $(function() {
         if($(this).attr('disabled')) return false;
         download(base64_to_blob(injuben_result.content,  'application/pdf'),
                 injuben_result.filename + '.' + injuben_result.suffix, 'application/pdf');
+    });
+
+    $('#in-save-pdf').on('touchstart', function(e) {
+        event.stopImmediatePropagation();
+    });
+
+    $('#in-preview-panel').on('click touchstart', function(e) {
+        if($(window).width() <= 768) {
+            $('#in-preview-container').focus();
+            hide_preview_navbar();
+            event.stopImmediatePropagation();
+        }
+    });
+
+    $('#in-preview-nav').on('touchstart', function(e) {
+        if($(window).width() <= 768) {
+            $('#in-preview-nav').addClass('in-nav-active');
+            event.stopImmediatePropagation();
+        }
+    }).children().on('click', function(e){return false;});
+
+    $('#in-preview-nav').on('touchend', function(e) {
+        if($(window).width() <= 768) {
+            $('#in-preview-container').focus();
+            $('#in-preview-nav').removeClass('in-nav-active');
+            event.stopImmediatePropagation();
+        }
+    }).children().on('click', function(e){return false;});
+
+    $('#in-preview-panel').on('touchend', function(e) {
+        if($(window).width() <= 768) {
+            $('#in-preview-container  .navbar.is-light').focus();
+            event.stopImmediatePropagation();
+        }
     });
 
     load_layout();
@@ -482,6 +522,10 @@ $(function() {
         }
         $('#in-preview-container').scrollTop(get_cookie('in.preview.state.scrollTop'));
         hide_progress_bar();
+        if($(window).width() <= 768) {
+            $('#in-preview-container').focus();
+            $('html, body').animate({scrollTop: $(window).height()*0.8}, 500);
+        }
     }
 
     function render_pdf(pdf_container, pdf_raw_content, fade_in, div_scale) {

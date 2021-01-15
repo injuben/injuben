@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <title>in剧本</title>
+  <title>{% if LANG=='zh' %}in剧本{% else %}inJuBen{% endif %}</title>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="{{url_for('static', filename='img/favicon.ico') }}" type="image/x-icon" />
@@ -28,7 +28,7 @@
       <div class="navbar-menu is-active">
         <div class="navbar-start">
           <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link in-brand" id="in-brand">in剧本</a>
+            <a class="navbar-link in-brand" id="in-brand">{% if LANG=='zh' %}in剧本{% else %}inJuBen{% endif %}</a>
             <div id="in-navbar-dropdown-menu" class="navbar-dropdown is-hidden-touch">
               <a class="navbar-item">
                 <label class="radio">
@@ -92,7 +92,7 @@
   </div>
 
   <div id="in-preview-panel" class="column is-6">
-    <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+    <nav id="in-preview-nav" class="navbar is-light" role="navigation" aria-label="main navigation">
       <div class="navbar-menu is-active">
         <div class="navbar-start">
            <div id="in-preview-navbar" class="navbar-item navbar-in-touch">
@@ -103,7 +103,7 @@
                   <span class="" style="margin-left:0.5em"></span>
                   <strong><span id="in-preview-settings-menu" class="in-preview-settings-menu" title="{{_('Preview Settings')}}">&#x25BE;</span></strong>
                 </a>
-                <div id="in-preview-settings" class="navbar-dropdown">
+                <div id="in-preview-settings" class="navbar-dropdown{% if LANG=='en' %} in-is-extended{% endif %}">
                   <a class="navbar-item">
                     <label class="checkbox">
                       <input id="in-strong-scene-heading" name="in-strong-scene-heading" type="checkbox" value="true"> {{_('Strong Scene Heading')}}

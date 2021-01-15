@@ -41,7 +41,9 @@ a.in-brand {font-family:"SF Pro SC","SF Pro Display","SF Pro Icons","PingFang SC
 #in-preview-navbar .button.is-success{border-color:#2a6f56}
 #in-preview-navbar .navbar-dropdown.is-up{bottom:100%;border-bottom:2px solid #dbdbdb;border-top-left-radius:6px;border-top-right-radius:6px;box-shadow:0 0 8px 5px rgba(10,10,10,.1);}
 #in-preview-navbar .navbar-dropdown.is-down{top:100%;border-top:2px solid #dbdbdb;border-bottom-left-radius:6px;border-bottom-right-radius:6px;box-shadow:0 8px 8px rgba(10,10,10,.1);}
+#in-preview-panel .navbar.is-light.in-nav-active{background-color:#666666}
 @media screen and (min-width:200px){#in-preview-navbar.navbar-item.is-active .navbar-dropdown, .navbar-item.is-hoverable:hover .navbar-dropdown {display: block} #in-preview-navbar .navbar-dropdown{background-color: #fff;display:none;font-size:.875rem;left:0;min-width:100%;position:absolute;z-index:20;}}
+@media screen and (max-width:350px){#in-preview-navbar .navbar-dropdown.is-up.in-is-extended{min-width:135%;}}
 @media screen and (max-width:768px){.is-hidden-narrow-touch{display:none !important} #in-edit-panel nav.navbar{min-height:auto} #in-edit-panel .navbar-menu{padding:0} #in-preview-navbar{padding-left:1.2rem} #in-save{padding-left:0} .in-preview-blank{font-size:16em} #in-preview-panel .navbar.is-light{background-color:#363636} #in-preview-navbar .button.is-refresh[disabled]{color:#fefefe;background-color:#80c5ac} #in-save .button[disabled]{color:#9a9a9a} #in-preview-settings-menu{padding-top:0.23em;padding-bottom:0.28em;} #in-refresh-preview{margin-left:0}}
 @media screen and (max-width:300px){#in-preview-navbar{padding-left:0.5rem;padding-right:0;} #in-save{padding-left:0}}
 @media screen and (min-width:769px) {#in-refresh-preview-txt{font-weight:bold}}
