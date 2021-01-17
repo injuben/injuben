@@ -29,3 +29,24 @@ a.in-brand {font-family:"SF Pro SC","SF Pro Display","SF Pro Icons","PingFang SC
 #in-preview-container{width:100%;background-color:#cccccc;padding:0px;overflow-y:scroll;overflow-x:hidden;}
 #in-progress-bar-parent{width:100%;position: absolute;margin:0;background-color:#cccccc;}
 #pdf-container{text-align: center;vertical-align: middle;width:100%;min-height:100%;border:0px solid black;background-color:#cccccc;padding:10px 20px 0;}
+#in-edit-panel .navbar-item, .navbar-link {color:#f5f5f5;background-color:#363636}
+#in-edit-panel .navbar.is-dark {background-color:#363636}
+#in-edit-panel .checkbox:hover, .radio:hover {color:#f5f5f5}
+#in-brand {background-color:#363636}
+.in-brand:hover{color:#f5f5f5}
+.navbar-divider{background-color:#515151}
+.in-preview-blank{font-size:22em;color:#ddd}
+.in-rotate-180-before:before{transform: rotate(180deg)}
+#in-collaps-arrow i {font-size:1.3em;padding-left:0.1em}
+#in-preview-navbar .button.is-success{border-color:#2a6f56}
+#in-preview-navbar .navbar-dropdown.is-up{bottom:100%;border-bottom:2px solid #dbdbdb;border-top-left-radius:6px;border-top-right-radius:6px;box-shadow:0 0 8px 5px rgba(10,10,10,.1);}
+#in-preview-navbar .navbar-dropdown.is-down{top:100%;border-top:2px solid #dbdbdb;border-bottom-left-radius:6px;border-bottom-right-radius:6px;box-shadow:0 8px 8px rgba(10,10,10,.1);}
+#in-preview-panel .navbar.is-light.in-nav-active{background-color:#666666}
+@media screen and (min-width:200px){#in-preview-navbar.navbar-item.is-active .navbar-dropdown, .navbar-item.is-hoverable:hover .navbar-dropdown {display: block} #in-preview-navbar .navbar-dropdown{background-color: #fff;display:none;font-size:.875rem;left:0;min-width:100%;position:absolute;z-index:20;}}
+@media screen and (max-width:350px){#in-preview-navbar .navbar-dropdown.is-up.in-is-extended{min-width:135%;}}
+@media screen and (max-width:768px){.is-hidden-narrow-touch{display:none !important} #in-edit-panel nav.navbar{min-height:auto} #in-edit-panel .navbar-menu{padding:0} #in-preview-navbar{padding-left:1.2rem} #in-save{padding-left:0} .in-preview-blank{font-size:16em} #in-preview-panel .navbar.is-light{background-color:#363636} #in-preview-navbar .button.is-refresh[disabled]{color:#fefefe;background-color:#80c5ac} #in-save .button[disabled]{color:#9a9a9a} #in-preview-settings-menu{padding-top:0.23em;padding-bottom:0.28em;} #in-refresh-preview{margin-left:0}}
+@media screen and (max-width:300px){#in-preview-navbar{padding-left:0.5rem;padding-right:0;} #in-save{padding-left:0}}
+@media screen and (min-width:769px) {#in-refresh-preview-txt{font-weight:bold}}
+@media screen and (min-width:769px) and (max-width:1087px){#in-edit-panel nav.navbar{min-height:auto} #in-edit-panel .navbar-menu{padding-bottom:0}}
+@media screen and (max-width:1087px){.navbar-in-touch{float:left} #in-preview-panel .navbar-menu{box-shadow:none;padding:0} #in-edit-panel .in-brand-touch.navbar-link::after{transform: rotate(135deg)} #in-edit-panel .navbar-link:not(.is-arrowless)::after{border-color:#f5f5f5} .navbar-menu{background-color:#363636} #in-navbar-dropdown-menu {border-top:1px solid #515151}}
+@media screen and (min-width:1088px){#in-edit-panel .navbar-dropdown{background-color:#363636;border-top-color:#515151}}
