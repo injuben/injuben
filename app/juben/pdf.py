@@ -48,7 +48,7 @@ from screenplain import types
 font_size = 12
 line_height = 18
 lines_per_page = 38
-characters_per_line = 30
+characters_per_line = 33
 character_width = 1.0 / 6 * inch  # source-han-serif pitch is 6 chars/inch
 dialog_per_line = 21
 dialog_left_indent = 5
@@ -57,7 +57,7 @@ frame_width = characters_per_line * character_width
 scene_number = 1
 
 page_width, page_height = pagesizes.letter
-left_margin = 1.65 * inch
+left_margin = 1.5 * inch
 right_margin = page_width - left_margin - frame_width
 top_margin = 1 * inch
 bottom_margin = page_height - top_margin - frame_height

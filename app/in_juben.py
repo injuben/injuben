@@ -59,12 +59,13 @@ def preview():
     has_scene_num = bool(request.form.get('in-has-scene-num'))
     first_page_number = bool(request.form.get('in-first-page-num'))
     strong_scene_heading = bool(request.form.get('in-strong-scene-heading'))
+    first_line_indent = bool(request.form.get('in-first-line-indent'))
     in_lang = request.form.get('in-lang')
     tmp_file = tempfile.SpooledTemporaryFile()
     suffix = "pdf"
     try:
         if in_lang == 'zh':
-            input = normalize.parse(input)
+            input = normalize.parse(input, first_line_indent)
         filename = input.readline().replace("Title:", '').strip()
         input.seek(0)
         screenplay = fountain.parse(input)
@@ -90,7 +91,7 @@ def locales():
             lang = {'Small':'小','Medium':'中','Large':'大', 'Dark Mode':'夜间模式','Active Line':'高亮当前行',
                     'Quick Start':'新手指南','Help':'使用帮助','FAQ':'常见问题','About inJuBen':'关于 in剧本','Save AS TXT':'另存为TXT','Word Count':'字数',
                     'Refresh Preview':'刷新预览','Preview Settings':'预览设置',
-                    'Scene Number':'生成场景序号','Strong Scene Heading':'加粗场景标题','First Page Number':'生成首页页码',
+                    'Scene Number':'生成场景序号','Strong Scene Heading':'加粗场景标题','First Page Number':'生成首页页码','First Line Indent':'首行缩进',
                     'Download PDF':'下载PDF','Invalid Format':'输入内容格式有误或服务器失去响应，请修改后重试'}
         else:
             lang = {'About inJuBen':'About in剧本(jù běn)'}
