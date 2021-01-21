@@ -70,7 +70,7 @@ def preview():
         input.seek(0)
         screenplay = fountain.parse(input)
         if in_lang == 'zh':
-            to_pdf(screenplay, tmp_file._file, is_strong=strong_scene_heading, has_scene_num=has_scene_num, first_page_number=first_page_number)
+            to_pdf(screenplay, tmp_file._file, is_strong=strong_scene_heading, has_scene_num=has_scene_num, first_page_number=first_page_number, first_line_indent=first_line_indent)
         else:
             to_en_pdf(screenplay, tmp_file._file, is_strong=strong_scene_heading)
         tmp_file.seek(0)

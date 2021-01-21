@@ -114,6 +114,13 @@ action_style = ParagraphStyle(
     'action', default_style,
     spaceBefore=line_height,
 )
+
+action_style_first_line_indent = ParagraphStyle(
+    'action', default_style,
+    spaceBefore=line_height,
+    firstLineIndent=1.5,
+)
+
 centered_action_style = ParagraphStyle(
     'centered-action', action_style,
     alignment=TA_CENTER,
@@ -304,7 +311,8 @@ def to_pdf(
     template_constructor=DocTemplate,
     is_strong=False,
     has_scene_num=False,
-    first_page_number=False
+    first_page_number=False,
+    first_line_indent=False
 ):
     global scene_number
     scene_number = 1
@@ -319,7 +327,7 @@ def to_pdf(
         elif isinstance(para, Action):
             add_paragraph(
                 story, para,
-                centered_action_style if para.centered else action_style
+                centered_action_style if para.centered else (action_style_first_line_indent if first_line_indent else action_style)
             )
         elif isinstance(para, Slug):
             add_slug(story, para, slug_style, is_strong, has_scene_num)
