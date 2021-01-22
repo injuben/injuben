@@ -118,7 +118,7 @@ action_style = ParagraphStyle(
 action_style_first_line_indent = ParagraphStyle(
     'action', default_style,
     spaceBefore=line_height,
-    firstLineIndent=1.45,
+    firstLineIndent=1.44,
 )
 
 centered_action_style = ParagraphStyle(
