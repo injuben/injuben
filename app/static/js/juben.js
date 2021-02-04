@@ -110,6 +110,10 @@ $(function() {
         set_preview_first_page_num($(this));
     });
 
+    $('#in-first-line-indent').on('click', function(){
+        set_preview_first_line_indent($(this));
+    });
+
     $('.menu-modal').on('click', function() {
         $('#'+$(this).attr('data-target')).addClass('is-active');
         event.stopImmediatePropagation();
@@ -129,12 +133,29 @@ $(function() {
         file_name = content.split("\n")[0].trim().replace('Title:','').trim();
         if(file_name === '') file_name = 'injuben';
         if(window.navigator.userAgent.match(/Win/)) content = content.replace(/\n/g, "\r\n");
-        download(base64_to_blob(window.btoa(unescape(encodeURIComponent("\ufeff" + content))), 'text/plain;charset=utf-8'), file_name + ".txt", "text/plain;charset=utf-8");
+        var suffix = ''
+        if(get_cookie('in.save.file_name') != undefined && get_cookie('in.save.file_name') == file_name)
+        {
+            suffix = "_" + in_formatted_date_time();
+        }
+        set_cookie('in.save.file_name', file_name);
+        download(base64_to_blob(window.btoa(unescape(encodeURIComponent("\ufeff" + content))), 'text/plain;charset=utf-8'), file_name + suffix + ".txt", "text/plain;charset=utf-8");
     });
 
     $('#in-collaps-bar').on('click', function(){
         in_collaps_bar_toggle();
     });
+
+    function in_pad_left_with_zero(value) {
+        return value < 10 ? '0' + value : value;
+    }
+
+    function in_formatted_date_time() {
+        var inDate = new Date();
+        return [inDate.getFullYear(), inDate.getMonth()+1, inDate.getDate()].map(in_pad_left_with_zero).join('-')
+               + '_' +
+               [inDate.getHours(), inDate.getMinutes(), inDate.getSeconds()].map(in_pad_left_with_zero).join('-');
+    };
 
     function in_collaps_bar_toggle(){
         $('#in-preview-panel').toggleClass('column').toggle();
@@ -305,7 +326,14 @@ $(function() {
         } 
         else if(get_cookie('in.preview.option.firstPageNum') === 'true') {
             $('#in-first-page-num').prop('checked', true);
-        }  
+        }
+
+        if(get_cookie('in.preview.option.firstLineIndent') === 'false') {
+            $('#in-first-line-indent').prop('checked', false);
+        }
+        else if(get_cookie('in.preview.option.firstLineIndent') === 'true') {
+            $('#in-first-line-indent').prop('checked', true);
+        }
 
         if(injuben_result === undefined) {
              $('#in-save-pdf').attr('disabled', true);
@@ -437,6 +465,15 @@ $(function() {
         }
         else {
             set_cookie('in.preview.option.firstPageNum','false');
+        }
+    }
+
+    function set_preview_first_line_indent(el) {
+        if(el.is(':checked')) {
+            set_cookie('in.preview.option.firstLineIndent','true');
+        }
+        else {
+            set_cookie('in.preview.option.firstLineIndent','false');
         }
     }
 

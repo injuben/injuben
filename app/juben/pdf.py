@@ -48,7 +48,7 @@ from screenplain import types
 font_size = 12
 line_height = 18
 lines_per_page = 38
-characters_per_line = 30
+characters_per_line = 33
 character_width = 1.0 / 6 * inch  # source-han-serif pitch is 6 chars/inch
 dialog_per_line = 21
 dialog_left_indent = 5
@@ -57,7 +57,7 @@ frame_width = characters_per_line * character_width
 scene_number = 1
 
 page_width, page_height = pagesizes.letter
-left_margin = 1.65 * inch
+left_margin = 1.5 * inch
 right_margin = page_width - left_margin - frame_width
 top_margin = 1 * inch
 bottom_margin = page_height - top_margin - frame_height
@@ -114,6 +114,13 @@ action_style = ParagraphStyle(
     'action', default_style,
     spaceBefore=line_height,
 )
+
+action_style_first_line_indent = ParagraphStyle(
+    'action', default_style,
+    spaceBefore=line_height,
+    firstLineIndent=1.44,
+)
+
 centered_action_style = ParagraphStyle(
     'centered-action', action_style,
     alignment=TA_CENTER,
@@ -304,7 +311,8 @@ def to_pdf(
     template_constructor=DocTemplate,
     is_strong=False,
     has_scene_num=False,
-    first_page_number=False
+    first_page_number=False,
+    first_line_indent=False
 ):
     global scene_number
     scene_number = 1
@@ -319,7 +327,7 @@ def to_pdf(
         elif isinstance(para, Action):
             add_paragraph(
                 story, para,
-                centered_action_style if para.centered else action_style
+                centered_action_style if para.centered else (action_style_first_line_indent if first_line_indent else action_style)
             )
         elif isinstance(para, Slug):
             add_slug(story, para, slug_style, is_strong, has_scene_num)

@@ -16,7 +16,7 @@ def str_decode(s):
     else:
         return s
 
-ACTION_PER_LINE = 30 # 动作描述每行的最大文字数
+ACTION_PER_LINE = 33 # 动作描述每行的最大文字数
 DIALOG_PER_LINE = 21 # 台词每行的最大文字数
 MORE = str_decode("转下页")   # 跨页台词转下页提示文字
 CONT_D = str_decode("继续")  # 跨页台词继续提示文字
@@ -76,7 +76,7 @@ def is_title_item(line):
         return True
 
 
-def parse(stream):
+def parse(stream, first_line_indent):
     line_count = 0
     current_charater = ""
     in_title_page = True
@@ -365,7 +365,10 @@ def parse(stream):
                     line_count += FIRST_LINE_MARGIN # 起始行
                     is_new_line_action = False
 
-                for c in line.strip():
+                line = line.strip()
+                if first_line_indent:
+                    line = " "*6 + line
+                for c in line:
                     if(c == CTR_A):
                         is_bold = True
                     if(c == CTR_B):
