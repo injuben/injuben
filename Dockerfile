@@ -12,8 +12,6 @@ RUN apk --update add --no-cache --virtual .build-deps \
 RUN unzip SourceHan_ttc.zip
 RUN mv *.ttc juben/fonts/
 RUN rm -f SourceHan_ttc.zip
-RUN pwd
-RUN ls -la
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN apk del .build-deps \
