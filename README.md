@@ -33,7 +33,7 @@ Download SourceHan_ttc.zip from https://github.com/injuben/Source-Han-TrueType ,
     
 ## Docker Hub
 
-    docker pull injuben/injube
+    docker pull injuben/injuben
     docker run --rm -it --name injuben -p 5000:5000 injuben/injuben
     
 Access http://localhost:5000/
