@@ -49,4 +49,4 @@ JavaScript: [CodeMirror](https://codemirror.net), [download.js](http://danml.com
 
 CSS: [Bulma](https://bulma.io), [Foundation Icon Font Sets](https://github.com/zurb/foundation-icons)
 
-Compressor: [YUI Compressor](http://yui.github.io/yuicompressor)
+Compressor: [YUI Compressor](http://yui.github.io/yuicompressor), [UglifyJS](https://github.com/mishoo/UglifyJS)
